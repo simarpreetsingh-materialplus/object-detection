@@ -1,0 +1,28 @@
+services:
+  fastapi_container:
+    build:
+      context: .
+      dockerfile: Dockerfile # Corrected dockerfile path
+    container_name: fastapi_container
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+    restart: always
+
+  streamlit_container:
+    build:
+      context: ./frontend # Corrected context for frontend directory
+      dockerfile: Dockerfile # Corrected dockerfile name
+    container_name: streamlit_container
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi_container
+    networks:
+      - mynetwork
+    restart: always
+
+networks:
+  mynetwork:
+    driver: bridge
