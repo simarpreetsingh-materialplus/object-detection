@@ -1,8 +1,8 @@
-# utils/image_utils.py:
-import cv2
-import base64
-import numpy as np
-
-def convert_image_to_base64(image):
-    _, buffer = cv2.imencode('.jpg', image)
-    return base64.b64encode(buffer).decode('utf-8')
+IyB1dGlscy9pbWFnZV91dGlscy5weToKaW1wb3J0IGN2MgppbXBvcnQgYmFz
+ZTY0CmltcG9ydCBudW1weSBhcyBucApsb2dnaW5nCgpkZWYgY29udmVydF9p
+bWFnZV90b19iYXNlNjQoaW1hZ2UpOgogICAgdHJ5OgogICAgICAgIF8sIGJ1
+ZmZlciA9IGN2Mi5pbWVuY29kZSgnLmpwZycsIGltYWdlKQogICAgICAgIHJl
+dHVybiBiYXNlNjQuYjY0ZW5jb2RlKGJ1ZmZlcikuZGVjb2RlKCd1dGYtOCcp
+CiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgbG9nZ2luZy5l
+cnJvcihmIkVycm9yIGVuY29kaW5nIGltYWdlIHRvIGJhc2U2NDogJXMiKSBb
+ZV0pCiAgICAgICAgcmV0dXJuIE5vbmUK

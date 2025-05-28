@@ -1,36 +1,33 @@
-# utils/video_utils.py:
-import cv2
-import tempfile
-import os
-from scenedetect import open_video, SceneManager
-from scenedetect.detectors import ContentDetector
-
-def extract_key_frames(video_bytes):
-    with tempfile.NamedTemporaryFile(delete=False) as temp_video_file:
-        temp_video_file.write(video_bytes)
-        temp_video_file_path = temp_video_file.name
-
-    video_stream = open_video(temp_video_file_path)
-    scene_manager = SceneManager()
-    scene_manager.add_detector(ContentDetector(threshold=30.0))  # Default threshold is 30.0
-
-    scene_manager.detect_scenes(video=video_stream)
-    scene_list = scene_manager.get_scene_list()
-
-    key_frames = []
-    scene_timestamps = []
-
-    for i, scene in enumerate(scene_list):
-        start, end = scene
-        midpoint = start.get_seconds() + (end.get_seconds() - start.get_seconds()) / 2
-        vidcap = cv2.VideoCapture(temp_video_file_path)
-        vidcap.set(cv2.CAP_PROP_POS_MSEC, midpoint * 1000)
-        success, image = vidcap.read()
-        if success:
-            key_frames.append(image)
-            scene_timestamps.append((str(start), str(end)))
-        vidcap.release()
-
-    os.remove(temp_video_file_path)
-    del video_stream
-    return key_frames, scene_timestamps
+IyB1dGlscy92aWRlb191dGlscy5weToKaW1wb3J0IGN2MgppbXBvcnQgdGVt
+cGZpbGUKaW1wb3J0IG9zCmxvZ2dpbmcKZnJvbSBzY2VuZWRldGVjdCBpbXBv
+cnQgb3Blbl92aWRlbywgU2NlbmVNYW5hZ2VyCmZyb20gc2NlbmVkZXRlY3Qu
+ZGV0ZWN0b3JzIGltcG9ydCBDb250ZW50RGV0ZWN0b3IKCmRlZiBleHRyYWN0
+X2tleV9mcmFtZXModmlkZW9fYnl0ZXMpOgogICAgdHJ5OgogICAgICAgIHdp
+dGggdGVtcGZpbGUuTmFtZWRUZW1wb3JhcnlGaWxlKGRlbGV0ZT1GYWxzZSkg
+YXMgdGVtcF92aWRlb19maWxlOgogICAgICAgICAgICB0ZW1wX3ZpZGVvX2Zp
+bGUud3JpdGUodmlkZW9fYnl0ZXMpCiAgICAgICAgICAgIHRlbXBfdmlkZW9f
+ZmlsZV9wYXRoID0gdGVtcF92aWRlb19maWxlLm5hbWUKCiAgICAgICAgdmlk
+ZW9fc3RyZWFtID0gb3Blbl92aWRlbyh0ZW1wX3ZpZGVvX2ZpbGVfcGF0aCkK
+ICAgICAgICBzY2VuZV9tYW5hZ2VyID0gU2NlbmVNYW5hZ2VyKCkKICAgICAg
+ICBzY2VuZV9tYW5hZ2VyLmFkZF9kZXRlY3RvcihDb250ZW50RGV0ZWN0b3Io
+dGhyZXNob2xkPTMwLjApKSAgIyBEZWZhdWx0IHRocmVzaG9sZCBpcyAzMC4w
+CgogICAgICAgIHNjZW5lX21hbmFnZXIuZGV0ZWN0X3NjZW5lcyh2aWRlbz12
+aWRlb19zdHJlYW0pCiAgICAgICAgc2NlbmVfbGlzdCA9IHNjZW5lX21hbmFn
+ZXIuZ2V0X3NjZW5lX2xpc3QoKQoKICAgICAgICBrZXlfZnJhbWVzID0gW10K
+ICAgICAgICBzY2VuZV90aW1lc3RhbXBzID0gW10KCiAgICAgICAgZm9yIGks
+IHNjZW5lIGluIGVudW1lcmF0ZShzY2VuZV9saXN0KToKICAgICAgICAgICAg
+c3RhcnQsIGVuZCA9IHNjZW5lCiAgICAgICAgICAgIG1pZHBvaW50ID0gc3Rh
+cnQuZ2V0X3NlY29uZHMoKSArIChlbmQuZ2V0X3NlY29uZHMoKSAtIHN0YXJ0
+LmdldF9zZWNvbmRzKCkpIC8gMgogICAgICAgICAgICB2aWRjYXAgPSBjdjIu
+VmlkZW9DYXB0dXJlKHRlbXBfdmlkZW9fZmlsZV9wYXRoKQogICAgICAgICAg
+ICB2aWRjYXAuc2V0KGN2Mi5DQVJfUFJPUE9TX01TRUMsIG1pZHBvaW50ICog
+MTAwMCkKICAgICAgICAgICAgc3VjY2VzcywgaW1hZ2UgPSB2aWRjYXAucmVh
+ZCgpCiAgICAgICAgICAgIGlmIHN1Y2Nlc3M6CiAgICAgICAgICAgICAgICBr
+ZXlfZnJhbWVzLmFwcGVuZChpbWFnZSkKICAgICAgICAgICAgICAgIHNjZW5l
+X3RpbWVzdGFtcHMuYXBwZW5kKChzdHIoc3RhcnQpLCBzdHIoZW5kKSkpCiAg
+ICAgICAgICAgIHZpZGNhcC5yZWxlYXNlKCkKCiAgICAgICAgb3MucmVtb3Zl
+KHRlbXBfdmlkZW9fZmlsZV9wYXRoKQogICAgICAgIGRlbCB2aWRlb19zdHJl
+YW0KICAgICAgICByZXR1cm4ga2V5X2ZyYW1lcywgc2NlbmVfdGltZXN0YW1w
+cwogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGxvZ2dpbmcu
+ZXJyb3IoZiJFcnJvciBleHRyYWN0aW5nIGtleSBmcmFtZXM6IHtlfSIpCiAg
+ICAgICAgcmV0dXJuIFtdLCBbXQ==
